@@ -29,18 +29,22 @@ int getPositionOfChar(node * root, char key){
 	return -1;
 }
 void insert(node * root, string word,int index,int word_size){
-	if(!root||index>=word_size||index<0) return;
+		if(!root||index>=word_size||index<0) return;
 	int p=getPositionOfChar(root,word[index]);
 	if(p>=0){
-		root->child[p]->isWord=(++index==word_size)?true:false;
-		insert(root->child[p],word,index,word_size);
+		if(!root->child[p]->isWord)
+		root->child[p]->isWord=(index==word_size-1?true:false);
+		insert(root->child[p],word,index+1,word_size);
 	}
 	else{
+		
 		root->child[word[index]-'a']=getEmptyNode();
 		root=root->child[word[index]-'a'];
 		root->data=word[index];
-		 root->isWord=(++index==word_size)?true:false;
-		 insert(root,word, index,word_size); 
+		if(!root->isWord)
+		root->isWord=(index==word_size-1?true:false);
+		
+		 insert(root,word, index+1,word_size); 
 	}	
 	return;
 }
