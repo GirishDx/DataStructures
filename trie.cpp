@@ -60,7 +60,7 @@ bool search(node * root,string word){
 int main(){ ios::sync_with_stdio(0);cin.tie(0);_main();return 0;}
 void _main(){
 	node * root=getEmptyNode();
-	root->data=3;
+	root->data=" ";
 	string words[]={"the", "a", "there", "answer", "any", "by", "bye", "their"};
 	int word_size=sizeof(words)/sizeof(words[0]);
 	rep0(i,word_size) insert(root,words[i],0,words[i].size());
